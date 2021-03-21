@@ -81,7 +81,9 @@ public:
 ```
 Şimdi de işlev _try_ bloklarıyla ilgili kodlama açısından önemli olabilecek noktalara değinelim:
 
-Bir sınıfın öğe ilk değer verme listesinden bir hata nesnesi gönderilirse, ilk değer listesiyle hayata getirilmiş (yani kurucu işlev kodunun tamamı çalıştırılmış) öğe nesnelerin sonlandırıcı işlevleri, programın akışının işlev try bloğuna ilişkin catch bloğuna girmesinden önce çağrılır. Kurucu işlevin parametre değişkenleri sınıf türlerinden ise bu parametre değişkenleri için çağrılacak olan kopyalayan kurucu işlev, taşıyan kurucu işlev ya da sonlandırıcı işlevlerden gönderilen hata nesneleri işlev _try_ bloğu ile yakalanamazlar. Programın akışı işlev _try_ bloğunu izleyen bir _catch_ bloğuna girdiğinde bu catch bloğu içinde program sonlandırılmaz ya da _catch_ bloğundan bir hata nesnesi (yeniden) gönderilmez ise derleyicinin ürettiği kod ile otomatik olarak hata nesnesi yeniden gönderilir _(rethrow)_.
+- Bir sınıfın öğe ilk değer verme listesinden bir hata nesnesi gönderilirse, ilk değer listesiyle hayata getirilmiş (yani kurucu işlev kodunun tamamı çalıştırılmış) öğe nesnelerin sonlandırıcı işlevleri, programın akışının işlev _try_ bloğuna ilişkin _catch_ bloğuna girmesinden önce çağrılır. 
+- Kurucu işlevin parametre değişkenleri sınıf türlerinden ise bu parametre değişkenleri için çağrılacak olan kopyalayan kurucu işlev, taşıyan kurucu işlev ya da sonlandırıcı işlevlerden gönderilen hata nesneleri işlev _try_ bloğu ile yakalanamazlar. 
+- Programın akışı işlev _try_ bloğunu izleyen bir _catch_ bloğuna girdiğinde bu catch bloğu içinde program sonlandırılmaz ya da _catch_ bloğundan bir hata nesnesi (yeniden) gönderilmez ise derleyicinin ürettiği kod ile otomatik olarak hata nesnesi yeniden gönderilir _(rethrow)_.
 
 İşlev _try_ bloklarının genel kullanım amacı kurucu işlevlere yönelik olsa da herhangi bir global işlev ya da bir sınıfın üye işlevi de işlev _try_ bloğuna sahip olabilir. Örneğin dilersek _main_ işlevi için bir işlev _try_ bloğu oluşturabiliriz:
 
@@ -119,6 +121,6 @@ int main()
 }
 ```
 
-Bir işlev _try_ bloğunu izleyen _catch_ bloğu içinde bir _return_ deyimi yer alabilir. Böyle bir _return_ deyimi _try bloğuna konu işlevin return deyimidir. catch bloğu içinde bir return deyimi yok ise programın akışı _catch_ bloğunun sonuna geldiğinde işlevin çalışan kodu sonlanmış olur. Eğer işlev _void_ değilse yani işlevin bir geri dönüş değeri türü var ise programın akışının _catch_ bloğunun sonuna kadar gelmesi tanımsız davranıştır.
+Bir işlev _try_ bloğunu izleyen _catch_ bloğu içinde bir _return_ deyimi yer alabilir. Böyle bir _return_ deyimi _try_ bloğuna konu işlevin return deyimidir. _catch_ bloğu içinde bir _return_ deyimi yok ise programın akışı _catch_ bloğunun sonuna geldiğinde işlevin çalışan kodu sonlanmış olur. Eğer işlev _void_ değilse yani işlevin bir geri dönüş değeri türü var ise programın akışının _catch_ bloğunun sonuna kadar gelmesi tanımsız davranıştır.
 
 İsim alanı kapsamında  _(namespace scope)_ oluşturulmuş statik ömürlü bir nesnenin kurucu işlevinden gönderilecek bir hata nesnesi _main_ işlevi için oluşturulacak olan bir işlev _try_ bloğu içinde yakalanamaz. statik ömürlü global nesnelerin kurucu işlevleri _main_ çağrılmadan önce çağrılmaktadır.
